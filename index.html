@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>留太郎football 紹介ページ</title>
+  <!-- Google Fonts: Noto Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- 日本語対応の Noto Sans (Noto Sans JP) を読み込み -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* 全体リセット */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* フォント・背景設定 */
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("背景.png");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    /* ヘッダー */
+    header {
+      background: url("シューズ.png") no-repeat center/cover;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    /* ヘッダーの黒～透明グラデーションオーバーレイ */
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; 
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+    }
+
+    header h1 {
+      position: relative;
+      font-size: 3rem;
+      z-index: 1; /* グラデーションの上に表示 */
+    }
+
+    /* メインコンテンツ */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    /* チャンネル紹介 */
+    .intro {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .intro h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .highlight-points {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .point {
+      background-color: #111; /* 黒に近い色 */
+      padding: 1.5rem;
+      border-radius: 8px;
+      flex: 1;
+      min-width: 250px;
+      max-width: 350px;
+      box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    }
+
+    .point h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: #19a758; /* サッカーっぽい差し色（緑） */
+    }
+
+    .point p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #ccc;
+    }
+
+    /* セクションタイトル */
+    .videos-section {
+      margin-bottom: 3rem;
+    }
+
+    .videos-section h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      border-left: 6px solid #19a758; /* 差し色 */
+      padding-left: 0.5rem;
+    }
+
+    /* 動画リスト */
+    .video-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .video-item {
+      background: #111;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+      width: calc(25% - 1rem);
+      min-width: 250px;
+      max-width: 300px;
+      overflow: hidden;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .video-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .video-info {
+      padding: 1rem;
+    }
+
+    .video-info h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: #19a758; /* 差し色 */
+    }
+
+    .video-info p {
+      font-size: 0.9rem;
+      color: #ccc;
+      line-height: 1.4;
+    }
+
+    /* CTAボタンのスタイル共通 */
+    .cta-button,
+    .subscribe-button {
+      display: inline-block;
+      background-color: #19a758;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      margin-top: 1rem;
+      font-weight: 700;
+    }
+    .cta-button:hover,
+    .subscribe-button:hover {
+      background-color: #16c36f;
+    }
+
+    /* フッター */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: #111;
+    }
+
+    footer p {
+      margin-bottom: 1rem;
+      color: #fff;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    footer a {
+      color: #19a758;
+      text-decoration: none;
+      border-bottom: 1px solid #19a758;
+    }
+
+    footer a:hover {
+      color: #16c36f;
+      border-bottom-color: #16c36f;
+    }
+
+    /* レスポンシブ対応 */
+    @media screen and (max-width: 768px) {
+      .highlight-points {
+        flex-direction: column;
+        align-items: center;
+      }
+      .point {
+        max-width: 80%;
+      }
+
+      .video-list {
+        flex-direction: column;
+        align-items: center;
+      }
+      .video-item {
+        width: 80%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>留太郎football</h1>
+  </header>
+  
+  <!-- サイト冒頭に追加のCTA（チャンネル登録） -->
+  <section class="intro">
+    <h2>サッカーは言語の壁を超える</h2>
+    <!-- 1回目の「チャンネル登録をする」ボタン -->
+    <p>
+      <a href="https://www.youtube.com/@Ryutaro_football/shorts" target="_blank" class="subscribe-button">
+        チャンネル登録をする
+      </a>
+    </p>
+  </section>
+
+  <main>
+    <!-- チャンネル紹介 -->
+    <section class="intro">
+      <h2>3つの推しポイント</h2>
+      <div class="highlight-points">
+        <div class="point">
+          <h3>① ハートフルなインタビュー</h3>
+          <p>
+            英語が苦手な大学生・留太郎が、たどたどしい英語を駆使して海外選手やサッカーファンに突撃インタビュー。<br>
+            言葉の壁を超えて伝わるサッカー愛にほっこり！
+          </p>
+        </div>
+        <div class="point">
+          <h3>② 爆速チャンネル成長</h3>
+          <p>
+            登録者数2万人超え、さらに100万回以上再生されている動画も多数！<br>
+            留太郎の行動力と情熱が生む、飛ぶ鳥を落とす勢いの快進撃。
+          </p>
+        </div>
+        <div class="point">
+          <h3>③ 企画力が魅力</h3>
+          <p>
+            おもしろ説検証、イケメン談義、マニアックな移籍情報…<br>
+            幅広い企画でサッカーファンのみならず、多くの視聴者を惹きつけています。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 日本サッカー選手好きの動画 -->
+    <section class="videos-section">
+      <h3>日本サッカー選手好きの動画</h3>
+      <div class="video-list">
+        <!-- サムネ④知名度.png -->
+        <div class="video-item">
+          <a href="https://www.youtube.com/shorts/xu9sDhoVkHk" target="_blank">
+            <img src="サムネ④知名度.png" alt="サムネイル1">
+          </a>
+          <div class="video-info">
+            <h4>この日本人サッカー選手を知ってますか？</h4>
+            <p>
+              最新の日本人選手トピックを深掘り。<br>
+              コアなファンなら必見です！
+            </p>
+            <!-- 今すぐ見るボタン (同じリンク先) -->
+            <a href="https://www.youtube.com/shorts/xu9sDhoVkHk" target="_blank" class="cta-button">今すぐ見る！</a>
+          </div>
+        </div>
+        <!-- サムネ⑥移籍.png -->
+        <div class="video-item">
+          <a href="https://www.youtube.com/shorts/LnffVXtJiZQ" target="_blank">
+            <img src="サムネ⑥移籍.png" alt="サムネイル2">
+          </a>
+          <div class="video-info">
+            <h4>この夏の移籍何点？</h4>
+            <p>
+              移籍市場を賑わす日本人選手たち。<br>
+              あなたの採点はいくつ？
+            </p>
+            <a href="https://www.youtube.com/shorts/LnffVXtJiZQ" target="_blank" class="cta-button">今すぐ見る！</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 説検証系のエンタメ動画 -->
+    <section class="videos-section">
+      <h3>説検証系のエンタメ動画</h3>
+      <div class="video-list">
+        <!-- サムネ①松本.png -->
+        <div class="video-item">
+          <a href="https://www.youtube.com/shorts/tnEXHmgeYJU" target="_blank">
+            <img src="サムネ①松本.png" alt="サムネイル3">
+          </a>
+          <div class="video-info">
+            <h4>松本人志の顔をジョエリントンと入れ替えてもばれない説</h4>
+            <p>
+              まさかの合成企画！？<br>
+              サッカーファンもお笑いファンも巻き込んだ衝撃説を検証！
+            </p>
+            <a href="https://www.youtube.com/shorts/tnEXHmgeYJU" target="_blank" class="cta-button">今すぐ見る！</a>
+          </div>
+        </div>
+        <!-- サムネ⑤ペップ.png -->
+        <div class="video-item">
+          <a href="https://www.youtube.com/shorts/TnB2EIBO0BQ" target="_blank">
+            <img src="サムネ⑤ペップ.png" alt="サムネイル4">
+          </a>
+          <div class="video-info">
+            <h4>ヘップチャレンジ</h4>
+            <p>
+              一体どんなチャレンジ？<br>
+              独創的な企画に留太郎が全力で挑みます。
+            </p>
+            <a href="https://www.youtube.com/shorts/TnB2EIBO0BQ" target="_blank" class="cta-button">今すぐ見る！</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 美女のイケメン判断動画 -->
+    <section class="videos-section">
+      <h3>美女のイケメン判断動画</h3>
+      <div class="video-list">
+        <!-- サムネ②まけん.png -->
+        <div class="video-item">
+          <a href="https://www.youtube.com/shorts/Bky4StVy7g4" target="_blank">
+            <img src="サムネ②まけん.png" alt="サムネイル5">
+          </a>
+          <div class="video-info">
+            <h4>日本代表のイケメン選手なら、1人くらい真賢雄に勝てちゃう説</h4>
+            <p>
+              美女がイケメン選手を徹底比較。<br>
+              その結果はいかに…？
+            </p>
+            <a href="https://www.youtube.com/shorts/Bky4StVy7g4" target="_blank" class="cta-button">今すぐ見る！</a>
+          </div>
+        </div>
+        <!-- サムネ③平野.png -->
+        <div class="video-item">
+          <a href="https://www.youtube.com/shorts/-siBhgHe_JE" target="_blank">
+            <img src="サムネ③平野.png" alt="サムネイル6">
+          </a>
+          <div class="video-info">
+            <h4>日本代表のイケメン選手なら、1人くらい平野翔に勝てちゃう説</h4>
+            <p>
+              果たして日本代表のイケメン度はどこまで通用するのか？<br>
+              衝撃の審査結果は必見！
+            </p>
+            <a href="https://www.youtube.com/shorts/-siBhgHe_JE" target="_blank" class="cta-button">今すぐ見る！</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2回目の「チャンネル登録をする」ボタンを、メインの下部あたりに配置 -->
+    <div class="intro" style="margin-top: 2rem;">
+      <h2>チャンネル登録をお忘れなく！</h2>
+      <p>
+        <a href="https://www.youtube.com/@Ryutaro_football/shorts" target="_blank" class="subscribe-button">
+          チャンネル登録をする
+        </a>
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <p>
+      最後に、この留太郎があなたの何かを紹介しますよ！<br>
+      <strong>スポンサーも募集中</strong>です！
+    </p>
+    <p>
+      ご連絡は
+      <a href="mailto:ryutaro.football55@gmail.com">こちら</a>
+      からどうぞ！
+    </p>
+  </footer>
+</body>
+</html>
